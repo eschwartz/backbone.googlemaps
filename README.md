@@ -9,6 +9,14 @@ Backbone.GoogleMaps is a simple Backbone JS extension for simplified interaction
 
 ## Example
 
+View the files in the example directory for working samples. Don't forget to add your Google Maps API key:
+
+```
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=[YOUR_API_KEY]&sensor=false"></script>
+```
+
+A simple example:
+
 ```javascript  	
 // Create Google map instance
 var places = new Backbone.GoogleMaps.LocationCollection([
