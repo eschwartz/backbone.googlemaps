@@ -122,7 +122,7 @@ Only a single `Location` model can be selected in a given `LocationCollection` a
 
 ## GoogleMaps.MapView
 
-A generic GoogleMaps view, for controlling an maps overlay instance. Extends Backbone.View.
+A generic GoogleMaps view, for controlling a maps overlay instance. Extends Backbone.View.
 
 #### Properties
 <table>
