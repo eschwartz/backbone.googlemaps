@@ -114,15 +114,15 @@ Represents a lat/lng location on a map. Extends Backbone.Model.
 	</tr>
 </table>
 
-## GoogleMaps.LocationCollection
+### GoogleMaps.LocationCollection
 
 A collection of GoogleMaps.Location objects. Extends Backbone.Collection.
 
 Only a single `Location` model can be selected in a given `LocationCollection` at any time.
 
-## GoogleMaps.MapView
+### GoogleMaps.MapView
 
-A generic GoogleMaps view, for controlling an maps overlay instance. Extends Backbone.View.
+A generic GoogleMaps view, for controlling a maps overlay instance. Extends Backbone.View.
 
 #### Properties
 <table>
@@ -153,7 +153,7 @@ A generic GoogleMaps view, for controlling an maps overlay instance. Extends Bac
 	</tr>
 </table>
 
-### Methods
+#### Methods
 <table>
 	<tr>
 		<td>Method</td>
@@ -170,11 +170,11 @@ A generic GoogleMaps view, for controlling an maps overlay instance. Extends Bac
 </table>
 
 
-## GoogleMaps.InfoWindow
+### GoogleMaps.InfoWindow
 
 View controller for a google.maps.InfoWindow overlay instance. Extends `GoogleMaps.MapView`.
 
-### Properties
+#### Properties
 
 <table>
 	<tr>
@@ -200,7 +200,7 @@ View controller for a google.maps.InfoWindow overlay instance. Extends `GoogleMa
 </table>
 
 
-### Methods
+#### Methods
 <table>
 	<tr>
 		<td>Method</td>
@@ -218,11 +218,11 @@ View controller for a google.maps.InfoWindow overlay instance. Extends `GoogleMa
 	
 
 
-## GoogleMaps.MarkerView
+### GoogleMaps.MarkerView
 
 View controller for a marker overlay. Extends `GoogleMaps.MapView`.
 
-### Properties
+#### Properties
 
 <table>
 	<tr>
@@ -242,7 +242,7 @@ View controller for a marker overlay. Extends `GoogleMaps.MapView`.
 	</tr>
 </table>
 	
-### Methods
+#### Methods
 <table>
 	<tr>
 		<td>Method</td>
@@ -278,11 +278,11 @@ View controller for a marker overlay. Extends `GoogleMaps.MapView`.
 	
 
 
-## GoogleMaps.MarkerCollectionView
+### GoogleMaps.MarkerCollectionView
 
 View controller for a collection of `GoogleMaps.MarkerView` instances. Extends Backbone.View.
 
-### Properties
+#### Properties
 
 <table>
 	<tr>
@@ -303,7 +303,7 @@ View controller for a collection of `GoogleMaps.MarkerView` instances. Extends B
 </table>
 
 
-### Methods
+#### Methods
 <table>
 	<tr>
 		<td>Method</td>
