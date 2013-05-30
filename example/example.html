@@ -158,6 +158,7 @@
 		},
 		
 		handleDragEnd: function(e) {
+			this.model.set({lat: e.latLng.lat(), lng: e.latLng.lng() });
 			alert('Dropped at: \n Lat: ' + e.latLng.lat() + '\n lng: ' + e.latLng.lng());
 		}
 	});
