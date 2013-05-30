@@ -17,7 +17,7 @@ View the files in the example directory for working samples. Don't forget to add
 
 A simple example:
 
-```javascript  	
+```javascript
 // Create Google map instance
 var places = new Backbone.GoogleMaps.LocationCollection([
 	{
@@ -215,7 +215,7 @@ View controller for a google.maps.InfoWindow overlay instance. Extends `GoogleMa
 		<td>Instantiates a google.maps.InfoWindow object, and displays it on this.map</td>
 	</tr>
 </table>
-	
+
 
 
 ### GoogleMaps.MarkerView
@@ -241,7 +241,7 @@ View controller for a marker overlay. Extends `GoogleMaps.MapView`.
 		<td>The InfoWindow view class used to when opening an infoWindow for this marker</td>
 	</tr>
 </table>
-	
+
 #### Methods
 <table>
 	<tr>
@@ -250,6 +250,13 @@ View controller for a marker overlay. Extends `GoogleMaps.MapView`.
 		<td>Return Value</td>
 		<td>Description</td>
 	</tr>
+	<tr>
+		<td>refreshOverlay</td>
+		<td></td>
+		<td></td>
+		<td>Updates the position of the marker view on the map</td>
+	</tr>
+
 	<tr>
 		<td>toggleSelect</td>
 		<td></td>
@@ -275,7 +282,7 @@ View controller for a marker overlay. Extends `GoogleMaps.MapView`.
 		<td>closes the InfoWindow associated with this marker</td>
 	</tr>
 </table>
-	
+
 
 
 ### GoogleMaps.MarkerCollectionView
