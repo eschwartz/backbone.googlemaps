@@ -107,7 +107,7 @@ Represents a lat/lng location on a map. Extends Backbone.Model.
 		<td>Toggles the model's selected property.</td>
 	</tr>
 	<tr>
-		<td>getLatLng</td>
+		<td>getLatlng</td>
 		<td></td>
 		<td>google.maps.LatLng instance</td>
 		<td>Returns the latitude and longitude of the model</td>
