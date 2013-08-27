@@ -84,17 +84,20 @@
 		{
 			title: "Walker Art Center",
 			lat: 44.9796635,
-			lng: -93.2748776
+			lng: -93.2748776,
+			type: 'museum'
 		},
 		{
 			title: "Science Museum of Minnesota",
 			lat: 44.9429618,
-			lng: -93.0981016
+			lng: -93.0981016,
+			type: 'museum'
 		},
 		{
 			title: "The Museum of Russian Art",
 			lat: 44.9036337,
-			lng: -93.2755413
+			lng: -93.2755413,
+			type: 'museum'
 		}
 	];
 	var bars = [
@@ -102,16 +105,19 @@
 			title: "Park Tavern",
 			lat: 44.9413272,
 			lng: -93.3705791,
+			type: 'bar'
 		},
 		{
 			title: "Chatterbox Pub",
 			lat: 44.9393882,
-			lng: -93.2391039
+			lng: -93.2391039,
+			type: 'bar'
 		},
 		{
 			title: "Acadia Cafe",
 			lat: 44.9709853,
-			lng: -93.2470717
+			lng: -93.2470717,
+			type: 'bar'
 		}
 	];
 	
@@ -145,10 +151,6 @@
 	App.MarkerView = Backbone.GoogleMaps.MarkerView.extend({
 		infoWindow: App.InfoWindow,
 		
-		overlayOptions: {
-			draggable: true
-		},
-		
 		initialize: function() {
 			_.bindAll(this, 'handleDragEnd');
 		},
@@ -161,9 +163,31 @@
 			alert('Dropped at: \n Lat: ' + e.latLng.lat() + '\n lng: ' + e.latLng.lng());
 		}
 	});
+
+  App.MuseumMarker = App.MarkerView.extend({
+    overlayOptions: {
+      draggable: true,
+      icon: 'assets/museum.png'
+    }
+  });
+
+  App.BarMarker = App.MarkerView.extend({
+    overlayOptions: {
+      draggable: true,
+      icon: 'assets/beer.png'
+    }
+  });
 	
 	App.MarkerCollectionView = Backbone.GoogleMaps.MarkerCollectionView.extend({
-		markerView: App.MarkerView
+		markerView: App.MarkerView,
+
+    addChild: function(model) {
+      this.markerView = model.get('type') === 'museum' ?
+              App.MuseumMarker:
+              App.BarMarker;
+
+      Backbone.GoogleMaps.MarkerCollectionView.prototype.addChild.apply(this, arguments);
+    }
 	});
 	
 	App.init = function() {
