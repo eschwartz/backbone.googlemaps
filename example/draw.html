@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Backbone.GoogleMaps | Example</title>
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+	  
+	  .overlay {
+		  position:fixed;
+		  background:rgba(255, 255, 255, 0.95);
+		  border:1px solid #aaa;
+		  padding:20px;
+		  z-index:5;
+	  }
+	  
+	  #search-area {
+		  right:40px;
+		  top:40px;
+	  }
+	  
+
+	  #listing {
+		  left:40px;
+		  bottom:150px;
+	  }
+		  #listing li {
+			  list-style:none;
+			  border-bottom:1px solid #ccc;
+			  padding:10px;
+			  cursor: pointer;
+		  }	  
+		  #listing li:hover {
+			  background:#006;
+			  color:#fff;
+		  }
+	  
+	  button {
+		  background:#006;
+		  color:#fff;
+		  font-weight:bold;
+		  border:1px solid rgba(0,0,0,.85);
+		  font-size:14px;
+		  padding:10px 15px;
+		  outline:none;
+	  }
+    </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&sensor=false"></script>
+	<script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="lib/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/backbone-min.js"></script>
+    <script type="text/javascript" src="../lib/backbone.googlemaps-min.js"></script>
+</head>
+
+<body>
+
+    <!-- TEMPLATE: InfoWindow
+     ============================== -->
+    <script id="infoWindow-template" type="text/html">
+        <h2><%=title %></h2>
+		<p>Latitude: <%=lat %></p>
+		<p>Longitude: <%=lng %></p>
+    </script>
+   
+    
+  	<div id="search-area" class="overlay">
+    	<button id="museums">find museums</button>
+        <button id="bars">find bars</button>
+        <button id="addBtn">add</button>
+        <button id="removeBtn">remove</button>
+    </div>
+    
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+    
+    <script type="text/javascript">
+	/** 
+	 * Example App
+	*/
+	
+	// Sample Data
+	var museums = [
+		{
+			title: "Walker Art Center",
+			lat: 44.9796635,
+			lng: -93.2748776,
+			type: 'museum'
+		},
+		{
+			title: "Science Museum of Minnesota",
+			lat: 44.9429618,
+			lng: -93.0981016,
+			type: 'museum'
+		},
+		{
+			title: "The Museum of Russian Art",
+			lat: 44.9036337,
+			lng: -93.2755413,
+			type: 'museum'
+		}
+	];
+	var bars = [
+		{
+			title: "Park Tavern",
+			lat: 44.9413272,
+			lng: -93.3705791,
+			type: 'bar'
+		},
+		{
+			title: "Chatterbox Pub",
+			lat: 44.9393882,
+			lng: -93.2391039,
+			type: 'bar'
+		},
+		{
+			title: "Acadia Cafe",
+			lat: 44.9709853,
+			lng: -93.2470717,
+			type: 'bar'
+		}
+	];
+	
+	var App = {};
+	
+	
+	App.Location = Backbone.GoogleMaps.Location.extend({
+		idAttribute: 'title',
+		defaults: {
+			lat: 45,
+			lng: -93
+		}
+	});
+	
+	App.LocationCollection = Backbone.GoogleMaps.LocationCollection.extend({
+		model: App.Location
+	});
+	
+	App.InfoWindow = Backbone.GoogleMaps.InfoWindow.extend({
+		template: '#infoWindow-template',
+		
+		events: {
+			'mouseenter h2': 'logTest'
+		},
+		
+		logTest: function() {
+			console.log('test in InfoWindow');
+		}
+	});
+	
+	App.MarkerView = Backbone.GoogleMaps.MarkerView.extend({
+		infoWindow: App.InfoWindow,
+		
+		initialize: function() {
+			_.bindAll(this, 'handleDragEnd');
+		},
+		
+		mapEvents: {
+			'dragend'	: 'handleDragEnd'
+		},
+		
+		handleDragEnd: function(e) {
+			alert('Dropped at: \n Lat: ' + e.latLng.lat() + '\n lng: ' + e.latLng.lng());
+		}
+	});
+
+  App.MuseumMarker = App.MarkerView.extend({
+    overlayOptions: {
+      draggable: true,
+      icon: 'assets/museum.png'
+    }
+  });
+
+  App.BarMarker = App.MarkerView.extend({
+    overlayOptions: {
+      draggable: true,
+      icon: 'assets/beer.png'
+    }
+  });
+	
+	App.MarkerRouteCollectionView = Backbone.GoogleMaps.MarkerRouteCollectionView.extend({
+		markerView: App.MarkerView,
+
+    addChild: function(model) {
+      this.markerView = model.get('type') === 'museum' ?
+              App.MuseumMarker:
+              App.BarMarker;
+
+      Backbone.GoogleMaps.MarkerRouteCollectionView.prototype.addChild.apply(this, arguments);
+    }
+	});
+	
+	App.init = function() {
+		this.createMap();
+		
+		this.places = new this.LocationCollection(museums);
+		
+		// Render Markers
+		var markerCollectionView = new this.MarkerRouteCollectionView({
+			collection: this.places,
+			map: this.map
+		});
+		markerCollectionView.render();
+		
+		// Render ListView
+		var listView = new App.ListView({
+			collection: this.places
+		});
+		listView.render();
+	}
+	
+	App.createMap = function() {
+		var mapOptions = {
+			center: new google.maps.LatLng(44.9796635, -93.2748776),
+			zoom: 12,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+					
+		// Instantiate map
+		this.map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+	}
+	
+	
+	/**
+	 * List view
+	*/
+	App.ItemView = Backbone.View.extend({
+		template: '<%=title %>',
+		tagName: 'li',
+		
+		events: {
+			'mouseenter':	'selectItem',
+			'mouseleave':	'deselectItem'
+		},
+		
+		initialize: function() {
+			_.bindAll(this, 'render', 'selectItem', 'deselectItem')
+			
+			this.model.on("remove", this.close, this);
+		},
+		
+		render: function() {
+			var html = _.template(this.template, this.model.toJSON());
+			this.$el.html(html);
+			
+			return this;
+		},
+		
+		close: function() {
+			this.$el.remove();
+		},
+		
+		selectItem: function() {
+			this.model.select();
+		},
+		
+		deselectItem: function() {
+			this.model.deselect();
+		}
+	});
+	
+	App.ListView = Backbone.View.extend({
+		tagName: 'ul',
+		className: 'overlay',
+		id: 'listing',
+		
+		initialize: function() {
+			_.bindAll(this, "refresh", "addChild");
+			
+			this.collection.on("reset", this.refresh, this);
+			this.collection.on("add", this.addChild, this);
+			
+			this.$el.appendTo('body');
+		},
+		
+		render: function() {
+			this.collection.each(this.addChild);
+		},
+		
+		addChild: function(childModel) {
+			var childView = new App.ItemView({ model: childModel });
+			childView.render().$el.appendTo(this.$el);
+		},
+		
+		refresh: function() {
+			this.$el.empty();
+			this.render();
+		}
+	});
+	
+	
+	$(document).ready(function() {
+		App.init();
+		
+		$('#bars').click(function() {
+			App.places.reset(bars);
+		});
+		
+		$('#museums').click(function() {
+			App.places.reset(museums);
+		});
+		
+		$('#addBtn').click(function() {
+			App.places.add({
+				title: 'State Capitol Building',
+				lat: 44.9543075,
+				lng: -93.102222
+			});
+		});
+		
+		$('#removeBtn').click(function() {
+			App.places.remove(App.places.at(0));
+		});
+	});
+	
+	
+	</script>
+</body>
+</html>

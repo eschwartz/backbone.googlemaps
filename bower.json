@@ -1,0 +1,25 @@
+{
+  "name": "backbone.googlemaps",
+  "version": "1.0.0",
+  "homepage": "https://github.com/eschwartz/backbone.googlemaps",
+  "authors": [
+    "Edan Schwartz <edanschwartz@gmail.com>"
+  ],
+  "description": "A Backbone JS extension for interacting with the Google Maps API (v3.10)",
+  "main": "lib/backbone.googlemaps.js",
+  "keywords": [
+    "backbone",
+    "googlemaps",
+    "google",
+    "maps"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}
