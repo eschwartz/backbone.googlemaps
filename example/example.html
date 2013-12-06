@@ -157,12 +157,24 @@
 		},
 		
 		mapEvents: {
-			'dragend'	: 'handleDragEnd'
+			'dragend'	: 'handleDragEnd',
+      		dblclick: 'tellTheWorldAboutIt'
 		},
 		
 		handleDragEnd: function(e) {
 			alert('Dropped at: \n Lat: ' + e.latLng.lat() + '\n lng: ' + e.latLng.lng());
-		}
+		},
+
+    tellTheWorldAboutIt: function() {
+      console.assert(this instanceof App.MarkerView);
+      alert('You done gone and double-clicked me!');
+      this.logIt('I hope you know that this will go down on your permanent record.')
+    },
+
+    logIt: function(message) {
+      console.assert(this instanceof App.MarkerView);
+      console.log(message);
+    }
 	});
 
   App.MuseumMarker = App.MarkerView.extend({
