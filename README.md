@@ -3,6 +3,15 @@ Backbone.GoogleMaps
 
 A Backbone JS extension for interacting with the Google Maps API (v3.10)
 
+### A note regarding the future of Backbone.GoogleMaps
+
+I am currently working on a **Backbone.Maps v2.0** update to the libary with better separation of concerns, support for multiple mapping APIs, expanded overlay view support, and (_shocking_) unit tests. 
+
+I apologize for my slow response to pull requests. One of the reasons I've been slow to respond to pull requests is that I haven't been able to run tests to check that new and existing functionality is functional. (A full-time job and a toddler at home might have something to do with my slow response, too, now that I think of it.)
+
+I am glad so many people have found this library useful. If you are interested in supporting the transition to v2.0, **I would love to find some collaborators to help me kickstart the project.** You can find my contact info in [my user profile](https://github.com/eschwartz)
+
+
 ## About backbone.googlemaps
 
 Backbone.GoogleMaps is a simple Backbone JS extension for simplified interactions with the Google Maps API. The motivation for creating this extension was to have an easy way to sync data about maps locations from a database with the Google Maps UI, using Backbone's RESTful interface.
