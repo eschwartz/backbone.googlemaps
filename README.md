@@ -39,7 +39,7 @@ var places = new Backbone.GoogleMaps.LocationCollection([
 		lat: 44.9429618,
 		lng: -93.0981016
 	}
-];
+]);
 
 var map = new google.maps.Map($('#map_canvas')[0], {
 	center: new google.maps.LatLng(44.9796635, -93.2748776),
