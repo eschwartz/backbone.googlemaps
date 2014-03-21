@@ -1,16 +1,7 @@
 Backbone.GoogleMaps
 ===================
 
-A Backbone JS extension for interacting with the Google Maps API (v3.10)
-
-### A note regarding the future of Backbone.GoogleMaps
-
-I am currently working on a **Backbone.Maps v2.0** update to the libary with better separation of concerns, support for multiple mapping APIs, expanded overlay view support, and (_shocking_) unit tests. 
-
-I apologize for my slow response to pull requests. One of the reasons I've been slow to respond to pull requests is that I haven't been able to run tests to check that new and existing functionality is functional. (A full-time job and a toddler at home might have something to do with my slow response, too, now that I think of it.)
-
-I am glad so many people have found this library useful. If you are interested in supporting the transition to v2.0, **I would love to find some collaborators to help me kickstart the project.** You can find my contact info in [my user profile](https://github.com/eschwartz)
-
+A Backbone JS extension for interacting with the Google Maps API (v3.10), with MarkerClusterer integration
 
 ## About backbone.googlemaps
 
@@ -50,7 +41,12 @@ var map = new google.maps.Map($('#map_canvas')[0], {
 // Render Markers
 var markerCollectionView = new Backbone.GoogleMaps.MarkerCollectionView({
 	collection: places,
-	map: map
+	map: map,
+	markerclusterer: {
+		opts: {
+			averageCenter: false
+		}
+	}
 });
 markerCollectionView.render();
 ```
@@ -276,7 +272,7 @@ View controller for a marker overlay. Extends `GoogleMaps.MapView`.
 		<td>render</td>
 		<td></td>
 		<td>this</td>
-		<td>Sets as visisible this.gOverlay (the marker instance itself is created in the constructor)</td>
+		<td>Sets as visible this.gOverlay (the marker instance itself is created in the constructor)</td>
 	</tr>
 	<tr>
 		<td>openDetail</td>
@@ -315,6 +311,20 @@ View controller for a collection of `GoogleMaps.MarkerView` instances. Extends B
 		<td>map</td>
 		<td></td>
 		<td>The google.maps.Map instance to which the overlay is attached</td>
+	</tr>
+	<tr>
+		<td>markerclusterer</td>
+		<td>
+			```
+			{
+        active: true,
+        opts: {
+          /* all options available for MarkerClusterer */
+        }
+      }
+			```
+		</td>
+		<td>Options hash to pass to the MarkerClusterer object</td>
 	</tr>
 </table>
 

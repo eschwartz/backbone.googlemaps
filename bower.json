@@ -1,0 +1,31 @@
+{
+  "name": "backbone.googlemaps",
+  "version": "0.0.1",
+  "homepage": "https://github.com/eschwartz/backbone.googlemaps",
+  "authors": [
+    "Edan Schwartz <edanschwartz@gmail.com>"
+  ],
+  "description": "A Backbone JS extension for interacting with the Google Maps API (v3.10), with MarkerClusterer integration",
+  "main": "lib/backbone.googlemaps.js",
+  "dependencies": {
+    "jquery": ">=1.10.2",
+    "underscore": "~1.5.2",
+    "gmaps-markerclusterer-plus": "~2.1.1"
+  },
+  "keywords": [
+    "backbone",
+    "googlemaps",
+    "google",
+    "maps",
+    "markerclusterer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}
