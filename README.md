@@ -315,14 +315,14 @@ View controller for a collection of `GoogleMaps.MarkerView` instances. Extends B
 	<tr>
 		<td>markerclusterer</td>
 		<td>
-			```
-			{
-        active: true,
-        opts: {
-          /* all options available for MarkerClusterer */
-        }
-      }
-			```
+			<pre>
+{
+	active: true,
+	opts: {
+		/* all options available for MarkerClusterer */
+	}
+}
+			</pre>
 		</td>
 		<td>Options hash to pass to the MarkerClusterer object</td>
 	</tr>
