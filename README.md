@@ -1,7 +1,7 @@
 Backbone.GoogleMaps
 ===================
 
-A Backbone JS extension for interacting with the Google Maps API (v3.10), with OverLappingMarkerSpiderfier integration
+A Backbone JS extension for interacting with the Google Maps API (v3.10), with [OverLappingMarkerSpiderfier] (https://github.com/jawj/OverlappingMarkerSpiderfier) integration
 
 ## About backbone.googlemaps
 
@@ -9,7 +9,7 @@ Backbone.GoogleMaps is a simple Backbone JS extension for simplified interaction
 
 ## Example
 
-View the files in the example directory for working samples. Don't forget to add your Google Maps API key:
+View the files in the example directory for working samples.
 
 ```
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
