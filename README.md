@@ -1,7 +1,7 @@
 Backbone.GoogleMaps
 ===================
 
-A Backbone JS extension for interacting with the Google Maps API (v3.10), with MarkerClusterer integration
+A Backbone JS extension for interacting with the Google Maps API (v3.10), with OverLappingMarkerSpiderfier integration
 
 ## About backbone.googlemaps
 
@@ -12,7 +12,7 @@ Backbone.GoogleMaps is a simple Backbone JS extension for simplified interaction
 View the files in the example directory for working samples. Don't forget to add your Google Maps API key:
 
 ```
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=[YOUR_API_KEY]&sensor=false"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 ```
 
 A simple example:
@@ -21,14 +21,14 @@ A simple example:
 // Create Google map instance
 var places = new Backbone.GoogleMaps.LocationCollection([
 	{
-		title: "Walker Art Center",
-		lat: 44.9796635,
-		lng: -93.2748776
+		title: "Surau Taman Melati",
+		lat: 3.224053, 
+		lng: 101.723590
 	},
 	{
-		title: "Science Museum of Minnesota",
-		lat: 44.9429618,
-		lng: -93.0981016
+		title: "Taska Mawardah",
+		lat: 3.2231987,
+		lng: 101.7240723
 	}
 ]);
 
@@ -42,9 +42,10 @@ var map = new google.maps.Map($('#map_canvas')[0], {
 var markerCollectionView = new Backbone.GoogleMaps.MarkerCollectionView({
 	collection: places,
 	map: map,
-	markerclusterer: {
+	overlappingmarkerspiderfier: {
 		opts: {
-			averageCenter: false
+			markersWontMove: true, 
+			markersWontHide: true
 		}
 	}
 });
@@ -313,18 +314,18 @@ View controller for a collection of `GoogleMaps.MarkerView` instances. Extends B
 		<td>The google.maps.Map instance to which the overlay is attached</td>
 	</tr>
 	<tr>
-		<td>markerclusterer</td>
+		<td>overlappingmarkerspiderfier</td>
 		<td>
 			<pre>
 {
 	active: true,
 	opts: {
-		/* all options available for MarkerClusterer */
+		/* all options available for OverLappingMarkerSpiderfier */
 	}
 }
 			</pre>
 		</td>
-		<td>Options hash to pass to the MarkerClusterer object</td>
+		<td>Options hash to pass to the OverLappingMarkerSpiderfier object</td>
 	</tr>
 </table>
 
