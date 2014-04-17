@@ -58,7 +58,7 @@ Backbone.GoogleMaps is packaged with several customizable components.
 
 ## Dependencies
 
-1. Backbone.picky - better marker selection
+1. Backbone.picky - better marker selection and event
 2. OverLappingMarkerSpiderfier - to organize markers with close location
 
 ### GoogleMaps.Location
@@ -80,11 +80,6 @@ Represents a lat/lng location on a map. Extends Backbone.Model.
 		<td>The location's longitute</td>
 	</tr>
 	<tr>
-		<td>selected</td>
-		<td>false</td>
-		<td>A flag for selecting a location</td>
-	</tr>
-	<tr>
 		<td>title</td>
 		<td>""</td>
 		<td>Location title</td>
@@ -98,24 +93,6 @@ Represents a lat/lng location on a map. Extends Backbone.Model.
 		<td>Parameters</td>
 		<td>Return Value</td>
 		<td>Description</td>
-	</tr>
-	<tr>
-		<td>select</td>
-		<td></td>
-		<td></td>
-		<td>Sets the model's selected property as true. Triggers a "selected" event on the model.</td>
-	</tr>
-	<tr>
-		<td>deselect</td>
-		<td></td>
-		<td></td>
-		<td>Sets the model's selected property as false. Triggers a "deselected" event on the model.</td>
-	</tr>
-	<tr>
-		<td>toggleSelect</td>
-		<td></td>
-		<td></td>
-		<td>Toggles the model's selected property.</td>
 	</tr>
 	<tr>
 		<td>getLatLng</td>
