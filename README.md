@@ -1,7 +1,7 @@
 Backbone.GoogleMaps
 ===================
 
-A Backbone JS extension for interacting with the Google Maps API (v3.10), with [OverLappingMarkerSpiderfier] (https://github.com/jawj/OverlappingMarkerSpiderfier) integration
+A Backbone JS extension for interacting with the Google Maps API (v3.10), with [OverLappingMarkerSpiderfier] (https://github.com/jawj/OverlappingMarkerSpiderfier) and [Backbone.picky] (https://github.com/derickbailey/backbone.picky) integration
 
 ## About backbone.googlemaps
 
@@ -55,6 +55,11 @@ markerCollectionView.render();
 ## Backbone.GoogleMaps Components
 
 Backbone.GoogleMaps is packaged with several customizable components.
+
+## Dependencies
+
+1. Backbone.picky - better marker selection
+2. OverLappingMarkerSpiderfier - to organize markers with close location
 
 ### GoogleMaps.Location
 Represents a lat/lng location on a map. Extends Backbone.Model.
