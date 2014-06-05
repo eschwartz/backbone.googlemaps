@@ -5,11 +5,17 @@ A Backbone JS extension for interacting with the Google Maps API (v3.10)
 
 ### A note regarding the future of Backbone.GoogleMaps
 
-I am currently working on a **Backbone.Maps v2.0** update to the libary with better separation of concerns, support for multiple mapping APIs, expanded overlay view support, and (_shocking_) unit tests. 
+I am currently working on a library called [Aeris.js](https://github.com/hamweather/aerisjs) which may serve as a replacement for Backbone.GoogleMaps. The original intent of Aeris.js was to render weather data, but along the way I had to create a set of abstractions for rendering large amounts of data from various APIs onto maps. The library is much cleaner than Backbone.GoogleMaps, and it's fully tested. I'm also paid to work on it, which means I have more time to support it :)
 
-I apologize for my slow response to pull requests. One of the reasons I've been slow to respond to pull requests is that I haven't been able to run tests to check that new and existing functionality is functional. (A full-time job and a toddler at home might have something to do with my slow response, too, now that I think of it.)
+I put together [a jsfiddle](http://jsfiddle.net/pwRyt/6/) which shows how you can bind a Backbone.Collection to a collection of markers. That's really just the tip of the iceberg when it comes to Aeris.js functionality (see the [github page](https://github.com/hamweather/aerisjs/blob/master/docs/usage.md) for docs and [demos](https://github.com/hamweather/aerisjs/blob/master/docs/usage.md#demos)): Aeris.js also supports: 
 
-I am glad so many people have found this library useful. If you are interested in supporting the transition to v2.0, **I would love to find some collaborators to help me kickstart the project.** You can find my contact info in [my user profile](https://github.com/eschwartz)
+* Seamlessly [switch between map libraries](https://github.com/hamweather/aerisjs/blob/master/docs/usage.md#supported-mapping-libraries) (Google Maps, Leaflet, Open Layers)
+* Additional map objects (Info boxes, custom tile layers, KML, Polygons, and Polylines)
+* Binding to map objects using Backbone.Events (eg. `marker.on('change:position', cb)`) 
+* Marker clustering
+* Geocode / geolocation services
+
+I am glad so many people have found the Backbone.GoogleMaps library useful. To make Aeris.js more accessible outside of weather applications, I would love to split up the basic mapping functionality into its own repo. **If you'd like to give me a hand with this, send me a message** and we can put together a game plan. You can find my contact info in [my user profile](https://github.com/eschwartz)
 
 
 ## About backbone.googlemaps
